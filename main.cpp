@@ -11,6 +11,18 @@ void chanshengwenming()
     }
 }
 
+void xingdong()
+{
+	for(auto i:suoyouwm)
+	{
+		if(!this->isalive())//半死不活先跳过
+		{continue;}
+		if(this==nullptr)//真死了的也跳过
+		{continue;}
+		i->xingdong();
+	}
+}
+
 int main()
 {
 	

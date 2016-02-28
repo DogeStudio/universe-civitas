@@ -25,7 +25,7 @@ wenming::wenming(wenming* native)
 }
 
 wenming::~wenming()
-{suoyouwm[num]=nullptr;}
+{num]=nullptr;}
 
 void wenming::clone()
 {
@@ -91,7 +91,76 @@ void wenming::help(wenming* jieshouwenming)
 
 void wenming::launch(int one,wenming* jieshouwenming)
 {
+	if(!fanweipanduan(x,y,jieshouwenming->x,jieshouwenming->y,tansuox,tansuoy))
+		return;
+	
 	int gaibianwmz=hudongxishu*one-this->wmzhi;
     int sudu=this->wmzhi*suduxishu;
 	feixingwu *anewfxw=new feixingwu(gaibianwmz,sudu,this,jieshouwenming);
+}
+
+void wenming::explore()
+{
+	this->tansuox+=this->wmzhi*tansuoxishu;
+    this->tansuoy+=this->wmzhi*tansuoxishu;
+    outln(getname()+"进行了探索，目前的探索范围是横轴"+tostring(tansuox)+"个长度单位，纵轴"+tostring(tansuoy)+"个长度单位");
+}
+
+bool wenming::operator == (const wenming& a)
+{return this->num==a.num;}
+
+void wenming::xingdong()
+{
+    if(this->jltezheng==gongji)//如果文明的特征是攻击
+    {
+        for(auto a:suoyouwm)
+        {
+			if(this==a)
+			{continue;}
+			this->attack(a);
+		}
+    }
+    if(this->jltezheng==youhao)
+    {
+        for(auto a:suoyouwm)
+        {
+			if(this==a)
+			{continue;}
+			this->help(a);
+        }
+    }
+    if(this->jltezheng==fangyu) //防御，被帮就帮，被打就打
+    {
+        for(auto a:suoyoufxw)
+        {
+          if(fanweipanduan(this->x,this->y,a->fashewenming->x,a->fashewenming->y,this->tansuox,this->tansuoy)
+            &&a->jieshouwenming==this)
+          {
+              if(a->gaibianwmz<0)
+              {this->attack(a);}
+              if(a->gaibianwmz>0)
+              {this->help(a);}
+          }
+        }
+    }
+    //下面是探索
+    if(this->tstezheng)
+    {
+        if(Rand::rand_2_3())
+        {this->explore();}
+        else
+        {this->clone();}
+    }
+    else
+    {
+        if(Rand::rand_2_3())
+        {this->explore();}
+    }
+	
+	int wmzhigaibian=rand(-1*wuqiong,wuqiong);
+    setwmzhi(wmzhigaibian);
+	if(wmzhigaibian>0)
+		outln(getname()+"发展，目前的文明值是"+tostring(wmzhi));
+	if(wmzhigaibian<0)
+		outln(getname()+"内战，目前的文明值是"+tostring(wmzhi));
 }
