@@ -1,5 +1,7 @@
 #include "var.h"
 
+list<wenming*> suoyouwm;//所有文明
+
 wenming::wenming(string name,int x,int y,int tansuox,int tansuoy,jiaoliu jltezheng,bool tstezheng)
 {
 	wmnum++;
@@ -134,12 +136,14 @@ void wenming::xingdong()
         for(auto a:suoyoufxw)
         {
           if(fanweipanduan(this->x,this->y,a->fashewenming->x,a->fashewenming->y,this->tansuox,this->tansuoy)
-            &&a->jieshouwenming==this)
+            &&a->jieshouwenming==this
+			&&!a->isreplyed)
           {
-              if(a->gaibianwmz<0)
-              {this->attack(a);}
-              if(a->gaibianwmz>0)
-              {this->help(a);}
+			if(a->gaibianwmz<0)
+			{this->attack(a);}
+			if(a->gaibianwmz>0)
+			{this->help(a);}
+			a->isreplyed=true;
           }
         }
     }
