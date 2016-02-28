@@ -53,7 +53,7 @@ string wenming::gettezheng()
     if(this->tstezheng)
     {texing+="和探索";}
     else
-    {texing+="和保守";}
+    {texing+="和保守";}c
     return texing;
 }
 
@@ -67,6 +67,14 @@ bool wenming::isalive()//此项为假的文明不能行动
 {
     if(this->wmzhi>0)//文明值大于0为活着
     {return true;}
-    else
+    elsea
     {return false;}
+}
+
+void wenming::attack(wenming* jieshouwenming)
+{
+	int gaibianwmz=hudongxishu*(-1)-this->wmzhi;
+    int sudu=this->wmzhi*suduxishu;
+	feixingwu *anewfxw=new feixingwu(gaibianwmz,sudu,this,jieshouwenming);
+	outln(getname()+"向"+jieshouwenming->getname()+"发射了战舰");
 }

@@ -17,5 +17,25 @@ feixingwu::feixingwu(int gaibianwmz,int sudu,wenming* fashewenming,wenming* jies
 	this->fashewenming=fashewenming;
 	this->jieshouwenming=jieshouwenming;
 	suoyoufxw.push_back(anewfxw);
-	//到这里，没写完（这是我当年写的，我也不知道哪没写完）
+	//计算到达需要回合数
+	float lucheng=sqrt(pow(fashewenming->x-jieshouwenming->x,2)+pow(fashewenming->y-jieshouwenming->y,2));//求路程，不过似乎有点问题（妈了个鸡的有啥问题你倒是说明白了啊
+	this->shengyult=lucheng/anewfxw->sudu;//到达需要的回合数
+	outln(gettype()+"还有"+tostring(anewfxw->shengyult)+"轮到达"+jieshouwenming->getname());
+	if(this->shengyult<=0)
+    {action();}
+	//到这里，没写完（这是我当年写的，我也不知道哪没写完，我感觉写完了啊）
+}
+
+string feixingwu::gettype()
+{
+	if (gaibianwmz>=0)
+	{return "交流飞船";}
+	return "战舰";
+}
+
+void feixingwu::action()
+{
+	jieshouwenming->wmzhi=this->gaibianwmz;
+	outln(fashewenming->getname()+"的"+gettype()+"降落在了"+jieshouwenming->getname());
+	outln("   "+jieshouwenming->getname()+"目前文明值为"+tostring(jieshouwenming->wmzhi));
 }
