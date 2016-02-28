@@ -5,8 +5,32 @@
 
 using namespace std;
 
-float rand(int a,int b)//产生一个范围内的随机数
-{return (rand() % (b-a+1))+ a;}
+class Rand
+{
+public:
+    static float random(int a,int b)//产生一个范围内的随机数
+    {return (rand() % (b-a+1))+ a;}
+    
+    static bool rand_1_2()//二分之一权重的随机
+    {
+        int seed=random(0,2);
+        if(seed==2)
+        {return rand_1_2();}
+        if(seed>=0&&seed<1)
+        {return true;}
+        return false;
+    }
+    
+    bool rand_2_3()//二分之三权重的随机
+    {
+      int seed=random(0,3);
+      if(seed==3)
+      {return rand_2_3();}
+      if((seed>=0&&seed<1)||(seed>=1&&seed<2))
+      {return true;}
+      return false;
+    }
+};
 
 void outln(string text)
 {cout<<text<<endl;}
@@ -20,12 +44,4 @@ string tostring(int i)
     return s;
 }
 
-bool boolrand()//两个随机值里选择
-{
-    int seed=rand(0,2);
-    if(seed==2)
-    {return erfenzhiyiquanzhong();}
-    if(seed>=0&&seed<1)
-    {return true;}
-    return false;
-}
+

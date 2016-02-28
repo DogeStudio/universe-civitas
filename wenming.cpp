@@ -67,14 +67,19 @@ bool wenming::isalive()//此项为假的文明不能行动
 {
     if(this->wmzhi>0)//文明值大于0为活着
     {return true;}
-    elsea
+    else
     {return false;}
 }
 
 void wenming::attack(wenming* jieshouwenming)
+{launch(-1,jieshouwenming);}
+
+void wenming::help(wenming* jieshouwenming)
+{launch(1,jieshouwenming);}
+
+void wenming::launch(int one,wenming* jieshouwenming)
 {
-	int gaibianwmz=hudongxishu*(-1)-this->wmzhi;
+	int gaibianwmz=hudongxishu*one-this->wmzhi;
     int sudu=this->wmzhi*suduxishu;
 	feixingwu *anewfxw=new feixingwu(gaibianwmz,sudu,this,jieshouwenming);
-	outln(getname()+"向"+jieshouwenming->getname()+"发射了战舰");
 }

@@ -17,6 +17,7 @@ feixingwu::feixingwu(int gaibianwmz,int sudu,wenming* fashewenming,wenming* jies
 	this->fashewenming=fashewenming;
 	this->jieshouwenming=jieshouwenming;
 	suoyoufxw.push_back(anewfxw);
+	outln(fashewenming->getname()+"向"+jieshouwenming->getname()+"发射了"+gettype());
 	//计算到达需要回合数
 	float lucheng=sqrt(pow(fashewenming->x-jieshouwenming->x,2)+pow(fashewenming->y-jieshouwenming->y,2));//求路程，不过似乎有点问题（妈了个鸡的有啥问题你倒是说明白了啊
 	this->shengyult=lucheng/anewfxw->sudu;//到达需要的回合数

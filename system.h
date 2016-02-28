@@ -38,7 +38,7 @@ public:
 	void help();
 	
 private:
-	void launch(int one);
+	void launch(int one,wenming* jieshouwenming);
 	int num;//序号
     jiaoliu jltezheng;//交流特征
     bool tstezheng;//探索特征，true为是，false为否
