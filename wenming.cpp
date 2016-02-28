@@ -1,9 +1,6 @@
-#include <iostream>
-#include <math.h>
-#include "help.h"
 #include "var.h"
 
-wenming::wenming(string name,int x,int y,int tansuox,int tansuoy)
+wenming::wenming(string name,int x,int y,int tansuox,int tansuoy,jiaoliu jltezheng,bool tstezheng)
 {
 	wmnum++;
 	if(wmnum==wuqiong)
@@ -18,12 +15,21 @@ wenming::wenming(string name,int x,int y,int tansuox,int tansuoy)
 	this->name=name;
 	this->tansuox=tansuox;
 	this->tansuoy=tansuoy;
+	this->jltezheng=jltezheng;
+	this->tstezheng=tstezheng;
 }
+
+wenming::wenming(wenming* native)
+{
+	wenming(native->x,native->y,native->name,native->tansuox,native->tansuoy,native->jltezheng,native->tstezheng);
+}
+
+wenming::~wenming()
+{suoyouwm[num]=nullptr;}
 
 void wenming::clone()
 {
-	wenming *anewwm=new wenming;
-	*anewwm=*this;
+	wenming *anewwm=new wenming(this);
 	/*
 	这块应该是……
 	决定新文明坐标的代码……
@@ -32,6 +38,12 @@ void wenming::clone()
 	所以略
 	*/
 	outln(getname()+"在"+tostring(this->x)+","+tostring(this->y)+"处发展出了一个分支文明");
+}
+
+void wenming::setwmzhi(int wmzhigaibian)
+{
+	wzzlxiajiang(wmzhigaibian);//文明值增加，物质总量就会减少，黑暗森林的基本公理
+	this->wmzhi+=wmzhigaibian;
 }
 
 string wenming::getname()
@@ -53,7 +65,7 @@ string wenming::gettezheng()
     if(this->tstezheng)
     {texing+="和探索";}
     else
-    {texing+="和保守";}c
+    {texing+="和保守";}
     return texing;
 }
 

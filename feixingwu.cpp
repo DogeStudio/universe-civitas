@@ -1,6 +1,3 @@
-#include <iostream>
-#include <math.h>
-#include "help.h"
 #include "var.h"
 
 feixingwu::feixingwu(int gaibianwmz,int sudu,wenming* fashewenming,wenming* jieshouwenming)
@@ -12,11 +9,11 @@ feixingwu::feixingwu(int gaibianwmz,int sudu,wenming* fashewenming,wenming* jies
     }
 	this->num=fxwnum;
 	//正式开始添加
+	suoyoufxw.push_back(anewfxw);
 	this->gaibianwmz=gaibianwmz;
 	this->sudu=sudu;
 	this->fashewenming=fashewenming;
 	this->jieshouwenming=jieshouwenming;
-	suoyoufxw.push_back(anewfxw);
 	outln(fashewenming->getname()+"向"+jieshouwenming->getname()+"发射了"+gettype());
 	//计算到达需要回合数
 	float lucheng=sqrt(pow(fashewenming->x-jieshouwenming->x,2)+pow(fashewenming->y-jieshouwenming->y,2));//求路程，不过似乎有点问题（妈了个鸡的有啥问题你倒是说明白了啊
@@ -26,6 +23,9 @@ feixingwu::feixingwu(int gaibianwmz,int sudu,wenming* fashewenming,wenming* jies
     {action();}
 	//到这里，没写完（这是我当年写的，我也不知道哪没写完，我感觉写完了啊）
 }
+
+feixingwu::~feixingwu()
+{suoyoufxw[num]=nullptr;}
 
 string feixingwu::gettype()
 {
@@ -39,4 +39,5 @@ void feixingwu::action()
 	jieshouwenming->wmzhi=this->gaibianwmz;
 	outln(fashewenming->getname()+"的"+gettype()+"降落在了"+jieshouwenming->getname());
 	outln("   "+jieshouwenming->getname()+"目前文明值为"+tostring(jieshouwenming->wmzhi));
+	delete this;
 }
