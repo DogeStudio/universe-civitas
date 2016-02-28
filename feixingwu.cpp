@@ -1,5 +1,7 @@
 #include "var.h"
 
+list<feixingwu*> suoyoufxw;//所有飞行物
+
 feixingwu::feixingwu(int gaibianwmz,int sudu,wenming* fashewenming,wenming* jieshouwenming)
 {
 	fxwnum++;
@@ -40,4 +42,12 @@ void feixingwu::action()
 	outln(fashewenming->getname()+"的"+gettype()+"降落在了"+jieshouwenming->getname());
 	outln("   "+jieshouwenming->getname()+"目前文明值为"+tostring(jieshouwenming->wmzhi));
 	delete this;
+}
+
+void feixingwu::feixing()
+{
+    this->shengyult--;
+    if(this->shengyult<=0)
+    {this->action();}
+    outln("来自"+fashewenming->getname()+"的"+tostring(num)+"号飞行器还有"+tostring(shengyult)+"轮到达"+jieshouwenming->getname());
 }

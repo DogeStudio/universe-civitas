@@ -54,8 +54,11 @@ public:
 	string gettezheng();
 	void tozero();//挂掉
 	bool isalive();//此项为假的文明不能行动
-	void attack();
-	void help();
+	void attack(wenming* jieshouwenming);
+	void help(wenming* jieshouwenming);
+	void explore();
+	void xingdong();
+	bool operator == (const wenming& a);
 	
 	//位置
     int x;
@@ -66,7 +69,7 @@ private:
 	void launch(int one,wenming* jieshouwenming);
 	int num;//序号
     jiaoliu jltezheng;//交流特征
-    bool tstezheng;//探索特征，true为是，false为否
+    bool tstezheng;//分裂特征，true会克隆，false不会克隆
     string name;
 	//探索到的范围
     int tansuox;
@@ -81,6 +84,8 @@ public:
 	~feixingwu();
 	string gettype();
 	void action();
+	void feixing();
+	bool isreplyed=false;
 	
 private:
     int gaibianwmz;
