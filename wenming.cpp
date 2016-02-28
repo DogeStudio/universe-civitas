@@ -40,3 +40,33 @@ string wenming::getname()
 	{return this->name;}
 	return tostring(this->num)+"号文明";
 }
+
+string wenming::gettezheng()
+{
+    string texing="文明特性为";
+    if(this->jltezheng==gongji)
+    {texing+="攻击";}
+    if(this->jltezheng==fangyu)
+    {texing+="防御";}
+    if(this->jltezheng==youhao)
+    {texing+="友好";}
+    if(this->tstezheng)
+    {texing+="和探索";}
+    else
+    {texing+="和保守";}
+    return texing;
+}
+
+void wenming::tozero()//文明归零不是文明值为0，而是彻底被杀死了
+{
+    outln(getname()+"遭到归零");
+    delete this;
+}
+
+bool wenming::isalive()//此项为假的文明不能行动
+{
+    if(this->wmzhi>0)//文明值大于0为活着
+    {return true;}
+    else
+    {return false;}
+}
