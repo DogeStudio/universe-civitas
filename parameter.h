@@ -7,4 +7,4 @@
 #define yuzhouy
 
 #define wuqiong //无穷的大小，之前那个数不好，你再想一个吧
-#define wuzhizongliang//物质总量，比无穷大要大（最好是平方）
+unsigned long long wuzhizongliang;//物质总量，比无穷大要大（最好是平方）

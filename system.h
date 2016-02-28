@@ -2,6 +2,7 @@
 #include <string>
 #include <list>
 #include <math.h>
+#include "parameter.h"
 using namespace std;
 
 //前置声明
